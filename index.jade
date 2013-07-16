@@ -36,6 +36,10 @@ html(lang="en")
 
         section
 
+          section
+            h3 Data visualization and interactivity &mdash; that gorgeous D3
+            small Francesco Occhipinti for Berlin JS, 18 July 2013
+
           section(data-background="data.png", data-state="white")
             h2 what is it all about
 
@@ -74,7 +78,7 @@ html(lang="en")
             .fragment
               h4.fragment.fade-out crappy standards
             .fragment
-              p.fragment.highlight-green interactivity
+              p.fragment.highlight-blue interactivity
             ul
               li.fragment
                 a(href="http://mbostock.github.io/d3/talk/20111116/iris-splom.html").
@@ -88,8 +92,27 @@ html(lang="en")
               a(href="https://github.com/mbostock/d3/wiki/Gallery").
                 examples
 
+            ul
+              li
+                a(href="http://www.jasondavies.com/parallel-sets/") parallel sets
+              li
+                a(href="http://bl.ocks.org/mbostock/4062045") force directed
+              li
+                a(href="http://bl.ocks.org/mbostock/4060954") stream graph
+              li
+                a(href="http://bl.ocks.org/mbostock/4063582") tree map
+              li
+                a(href="http://mbostock.github.io/d3/talk/20111018/tree.html") collapsible tree
+              li
+                a(href="http://mbostock.github.io/d3/talk/20111116/force-collapsible.html") collapsible force layout
+              li
+                a(href="http://mbostock.github.io/d3/talk/20111116/bundle.html") hierarchical edge bundling
+
           section
-            h3 tables to <a href="http://exposedata.com/parallel/">strokes</a>
+            h3
+                a(href="food-table.csv") tables
+                | - versus -
+                a(href="http://exposedata.com/parallel/") strokes
 
         section
 
@@ -111,12 +134,25 @@ html(lang="en")
 
           section
             h3 usability grounds
-            p
-              ul
-                li
-                  a(href="http://bost.ocks.org/mike/constancy/") object constancy
-                li
-                  a(href="http://vis.berkeley.edu/papers/animated_transitions/") vis.berkeley paper
+            p.
+
+              usability research effort from Stanford and Berkeley
+              visualization groups
+
+            p.fragment for example ...
+
+            p.fragment.roll-in
+              a(href="http://vis.berkeley.edu/papers/animated_transitions/") vis.berkeley paper
+              | &rarr;
+              a(href="http://bost.ocks.org/mike/constancy/") object constancy
+
+          section
+            h3 let's start
+
+          section
+            h3 it's easy!
+            pre.fragment.fade-in.
+              d3.select('body').selectAll('.box').data(random(), function(d){return d.city;}).call(function(s){s.style('border', '1px solid black').transition().duration(duration).style('top', function(d, i){return 50+i*30;}).transition().duration(2*duration).style('width', function(d){ return d.value*200; });}).call(function(s){s.enter().append('div').attr('class', 'box').text(function(d){return d.city;}).style('top', function(d, i){return 50+i*30;}).transition().duration(duration).delay().style('width', function(d){return d.value*200;});}).call(function(s){s.exit().transition().duration(duration).style('top', 2000).remove();})
 
           section
             h3 the heart of d3
@@ -153,11 +189,24 @@ html(lang="en")
           section
             h3 don't be afraid of vectors
             p convert to <a href="http://www.w3.org/TR/SVG/expanded-toc.html">vectors</a>
+            p.fragment
+              pre.
+                <div style="top: 100; width: 234px; height: 20px">
+                    Berlin
+                </div>
+            p.fragment
+              pre.
+                <g transform="translate(0, 100)">
+                    <rect width="234" height="20"></rect>
+                    <text>
+                        Berlin
+                    </text>
+                </g>
 
         section
 
           section
-            h3 how hard can it be?
+            h3 how hard can it get?
             a(href="http://mbostock.github.io/d3/talk/20111018/collision.html").
               anatomy of a force chart
 
@@ -196,6 +245,8 @@ html(lang="en")
               li.fragment big
               ul
                 li.fragment just check the d3 doc
+            p.fragment developing this is like doing research...
+            p.fragment ... in an interdisciplinary field
 
           section
             h4 thus, some kind of cooperation would help
@@ -206,7 +257,7 @@ html(lang="en")
               li.fragment data visualization group, Berlin
                 p.fragment &mdash; 2 visionaries
                 p.fragment one is me
-                p.fragment the other lives in Helsinki
+                p.fragment the other one lives in Helsinki
                 p.fragment this does not help ...
 
           section
