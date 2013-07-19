@@ -1,0 +1,271 @@
+!!!
+html(lang="en")
+  head
+    meta(charset="uft-8")
+    meta(name="description", content="D3 introduction")
+    meta(name="author", content="Francesco Occhipinti")
+    meta(name="apple-mobile-web-app-capable", content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style", content="black-translucent")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+    // For syntax highlighting
+    link(rel="stylesheet", href="lib/css/zenburn.css")
+
+    style.
+      .white h2, .white h3, .white p {
+        color: white;
+        text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
+      }
+
+    // If the query includes 'print-pdf', use the PDF print sheet
+    script.
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+
+    //- <!--[if lt IE 9]>
+    //- <script src="lib/js/html5shiv.js"></script>
+    //- <![endif]-->
+
+    title
+      D3 introduction for BerlinJS visionaries
+  body
+    div(class="reveal")
+      div(class="slides")
+
+        section
+
+          section
+            h3 Data visualization and interactivity &mdash; that gorgeous D3
+            small Francesco Occhipinti for Berlin JS, 18 July 2013
+
+          section(data-background="data.png", data-state="white")
+            h2 what is it all about
+
+          section
+            p that's the buzz, baby
+            p.fragment and there is nothing you can do about it ...
+
+          section
+            p but data are abstract
+            p.fragment while we human beings come from a world of sensible things
+
+          section
+            h3 sense making
+            ul.fragment.fade-in
+              li Smell
+              li Taste
+              li Hearing
+              li Touch
+              li Sight
+
+          section
+            h3 Hearing - data auralization
+            a(href="http://vimeo.com/23965023") listening to the Dow
+
+          section(data-background="anfischer_indizes_2.jpg", data-state="white")
+            h3 Touch - data sculptures?
+            
+          section
+            h3 Sight - let's keep it simple
+            a(href="http://www.dashingd3js.com/why-data-visualizations") Anscombe's Quartet
+
+          section
+            h3 but time has elapsed...
+            h4.fragment the media is different
+            p.fragment and it offers a small, disrupting feature
+            .fragment
+              h2.fragment.fade-out crappy standards
+            .fragment
+              p.fragment.highlight-blue interactivity
+            ul
+              li.fragment
+                a(href="http://mbostock.github.io/d3/talk/20111116/iris-splom.html").
+                  brushing
+              li.fragment linked views
+              li.fragment something we still don't imagine
+            p.fragment this will be a design problem, be aware
+
+          section
+            h3
+              a(href="https://github.com/mbostock/d3/wiki/Gallery").
+                examples
+
+            ul
+              li
+                a(href="http://www.jasondavies.com/parallel-sets/") parallel sets
+              li
+                a(href="http://bl.ocks.org/mbostock/4062045") force directed
+              li
+                a(href="http://bl.ocks.org/mbostock/4060954") stream graph
+              li
+                a(href="http://bl.ocks.org/mbostock/4063582") tree map
+              li
+                a(href="http://mbostock.github.io/d3/talk/20111018/tree.html") collapsible tree
+              li
+                a(href="http://mbostock.github.io/d3/talk/20111116/force-collapsible.html") collapsible force layout
+              li
+                a(href="http://mbostock.github.io/d3/talk/20111116/bundle.html") hierarchical edge bundling
+
+          section
+            h3
+                a(href="food-table.csv") tables
+                | - versus -
+                a(href="http://exposedata.com/parallel/") strokes
+
+        section
+
+          section
+            h3 d3
+
+
+          section
+            h3 history
+            ul
+              li flare
+              li protovis
+              li d3
+
+
+          section
+            h3 which kind of tool is d3?
+            a(href="http://bl.ocks.org/mbostock/1256572") show reel
+
+          section
+            h3 usability grounds
+            p.
+
+              usability research effort from Stanford and Berkeley
+              visualization groups
+
+            p.fragment for example ...
+
+            p.fragment.roll-in
+              a(href="http://vis.berkeley.edu/papers/animated_transitions/") vis.berkeley paper
+              | &rarr;
+              a(href="http://bost.ocks.org/mike/constancy/") object constancy
+
+          section
+            h3 let's start
+
+          section
+            h3 it's easy!
+            pre.fragment.fade-in.
+              d3.select('body').selectAll('.box').data(random(), function(d){return d.city;}).call(function(s){s.style('border', '1px solid black').transition().duration(duration).style('top', function(d, i){return 50+i*30;}).transition().duration(2*duration).style('width', function(d){ return d.value*200; });}).call(function(s){s.enter().append('div').attr('class', 'box').text(function(d){return d.city;}).style('top', function(d, i){return 50+i*30;}).transition().duration(duration).delay().style('width', function(d){return d.value*200;});}).call(function(s){s.exit().transition().duration(duration).style('top', 2000).remove();})
+
+          section
+            h3 the heart of d3
+            p selectAll, enter, exit
+            ul
+              li
+                a(href="http://mbostock.github.io/d3/tutorial/circle.html").
+                  three little circles
+              li
+                a(href="http://bost.ocks.org/mike/join/").
+                  thinking with joins
+              li
+                a(href="http://bl.ocks.org/mbostock/3808234").
+                  general update pattern (letters)
+              li
+                a(href="http://bost.ocks.org/mike/selection/").
+                  to deepen selections
+
+          section
+            h3 live coding
+            p
+              | a simple
+              a(href="https://github.com/danse/d3-playground") d3 playground
+            ul
+              li.
+                __data__
+              li.
+                join -> <a href="http://bost.ocks.org/mike/selection/#key">key function</a>
+            p
+              | inspired by
+              a(href="http://www.ultrasaurus.com/sarahblog/2012/03/d3-js-experiments-in-the-console/").
+                ultrasaurus experiments
+
+          section
+            h3 don't be afraid of vectors
+            p convert to <a href="http://www.w3.org/TR/SVG/expanded-toc.html">vectors</a>
+            p.fragment
+              pre.
+                &lt;div style="top: 100; width: 234px; height: 20px"&gt;
+                    Berlin
+                &lt;/div&gt;
+            p.fragment
+              pre.
+                &lt;g transform="translate(0, 100)"&gt;
+                    &lt;rect width="234" height="20"&gt;&lt;/rect&gt;
+                    &lt;text&gt;
+                        Berlin
+                    &lt;/text&gt;
+                &lt;/g&gt;
+
+        section
+
+          section
+            h3 how hard can it get?
+            a(href="http://mbostock.github.io/d3/talk/20111018/collision.html").
+              anatomy of a force chart
+            p
+              small
+                a(href="http://bl.ocks.org/mbostock/1804919").
+                  reference for custom gravity
+
+          section
+            h3 it's an universe
+            a(href="https://github.com/mbostock/d3/wiki/API-Reference").fragment.
+              the d3 interface
+
+          section
+            h3 d3 sisters
+            p
+              a(href="http://bost.ocks.org/mike/chart/") d3 reusable graph format
+            ul
+              li d3 plugins
+              li nvd3
+              li
+                a(href="https://github.com/trifacta/vega") vega
+              li
+                a(href="http://square.github.io/crossfilter/") crossfilter
+
+        section
+
+          section
+            h3 it's complicated
+            ul
+              li.fragment interdisciplinary
+              ul
+                li.fragment programming
+                li.fragment design
+                li.fragment data analysis
+              li.fragment innovative
+              ul
+                li.fragment technology
+                li.fragment concept
+                li.fragment purpose
+              li.fragment big
+              ul
+                li.fragment just check the d3 doc
+            p.fragment developing this is like doing research...
+            p.fragment ... in an interdisciplinary field
+
+          section
+            h4 thus, some kind of cooperation would help
+            h3.fragment Berlin visionaries?
+            ul
+              li.fragment data visualization group, London
+                p.fragment &mdash; 780 visualizers
+              li.fragment data visualization group, Berlin
+                p.fragment &mdash; 2 visionaries on Monday
+                p.fragment &mdash; ~60 visionaries Yesterday
+                p.fragment &mdash; ~100 visionaries Today
+                p.fragment we can do better ...
+
+          section
+            p so join!
+            p http://www.meetup.com/Data-Visualization-Berlin/
+
+          section
+
+            h3 thanks !
+            h4.fragment questions ?
